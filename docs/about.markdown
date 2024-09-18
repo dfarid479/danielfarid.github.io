@@ -6,6 +6,7 @@ background: '/img/bg-about.jpg'
 ---
 
 <section>
+<h2><small>About</h2> 
 <p>I am a professional in the digital forensics field, continuously teaching myself various technology topics. This website is meant to document my projects and help me learn new skills along the way.</p>
 
 <p>I received a Bachelor of Arts in Sociology and a Master of Arts in Criminal Justice, both from Rowan University. In addition to my academic background, I am committed to ongoing professional development and maintain several key certifications, including:
