@@ -17,7 +17,6 @@ background: '/img/bg-about.jpg'
         <li>Licensed FAA Part 107 Small Unmanned Aircraft Drone Pilot</li>
     </ul>
     </p>
-
 <p class="mb-5">I am an avid runner and have raced distances from 5k to 100k. I am currently trying to complete a marathon in every state; I have 35 left!</p>
     <ul>
         <li>Marathons completed: 22</li>
@@ -27,7 +26,7 @@ background: '/img/bg-about.jpg'
 </section>
 
 <section>
-    <h2>Press</h2>
+    <h2><small>Press</h2> 
     <ul>
         <li><a href="https://www.fox29.com/news/gloucester-county-welcomes-new-k-9-police-officer-able-sniff-out-electronic-devices">"Gloucester County welcomes new K-9 police officer able to sniff out electronic devices - Fox News"</a></li>
         <li><a href="https://www.nj.com/gloucester-county/2024/08/new-police-k-9-can-sniff-out-child-porn-and-hes-already-cracking-nj-cases.html">"New police K-9 can sniff out child porn — and he’s already cracking N.J. cases - NJ.com"</a></li>
