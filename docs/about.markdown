@@ -1,18 +1,37 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: About Me
+description: This is what I do. 
+background: '/img/bg-about.jpg'
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+<section>
+<p>I am a professional in the digital forensics field, continuously teaching myself various technology topics. This website is meant to document my projects and help me learn new skills along the way.</p>
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+<p>I received a Bachelor of Arts in Sociology and a Master of Arts in Criminal Justice, both from Rowan University. In addition to my academic background, I am committed to ongoing professional development and maintain several key certifications, including:
+    <ul>
+        <li>Magnet Certified GrayKey Examiner</li>
+        <li>Certified Cellebrite Operator</li>
+        <li>Certified Cellebrite Physical Analyst</li>
+        <li>Magnet Certified Forensic Examiner</li>
+        <li>Licensed FAA Part 107 Small Unmanned Aircraft Drone Pilot</li>
+    </ul>
+    </p>
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+<p class="mb-5">I am an avid runner and have raced distances from 5k to 100k. I am currently trying to complete a marathon in every state; I have 35 left!</p>
+    <ul>
+        <li>Marathons completed: 22</li>
+        <li>5k Personal Best: 19:56</li>
+        <li>Marathon Personal Best: 3:45</li>
+    </ul>
+</section>
 
-
-[jekyll-organization]: https://github.com/jekyll
+<section>
+    <h2>Press</h2>
+    <ul>
+        <li><a href="https://www.fox29.com/news/gloucester-county-welcomes-new-k-9-police-officer-able-sniff-out-electronic-devices">"Gloucester County welcomes new K-9 police officer able to sniff out electronic devices - Fox News"</a></li>
+        <li><a href="https://www.nj.com/gloucester-county/2024/08/new-police-k-9-can-sniff-out-child-porn-and-hes-already-cracking-nj-cases.html">"New police K-9 can sniff out child porn — and he’s already cracking N.J. cases - NJ.com"</a></li>
+        <li><a href="https://nj1015.com/nj-k-9-trained-to-smell-for-cyberstalking-child-porn-and-more/">"NJ K-9 Trained to smell for cyberstalking child porn and more - NJ 1015"</a></li>
+        <li><a href="https://www.audacy.com/kywnewsradio/news/local/south-jersey-k-9-sniff-out-electronics-comfort-kids">"Get a dog that can do both: New South Jersey K-9 can sniff out electronics, comfort kids - KYW 1060"</a></li>
+    </ul>
+</section>
