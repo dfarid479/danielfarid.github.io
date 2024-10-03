@@ -4,7 +4,7 @@ title:  "Exploring Meshtastic"
 subtitle: "Radio Communication and the Digital Forensics Impact"
 date:   2024-10-02 19:43:59 -0400
 categories: Exploring Meshtastic
-background: '/img/posts/NCFI_1.jpg'
+background: '/img/posts/mesh.jpg'
 ---
 
  <p>I recently got started on an exciting new project: building my Meshtastic network! Inspired by a fantastic video by DataSlayer on YouTube (https://www.youtube.com/watch?v=40llxjrIG3w), I decided to dive into this innovative platform using the same hardware showcased in the video. </p>
