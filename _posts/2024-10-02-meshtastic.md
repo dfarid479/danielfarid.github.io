@@ -29,7 +29,7 @@ background: '/img/posts/mesh.jpg'
 
 <h2 class="section-heading"> Testing Process </h2>
 
-<p> My theory going into this process was that content-based artifacts would be extremely limited on Full Filesystem extractions and virtually nonexistent on Logical extractions. Your cellphone communicates via Bluetooth with the mesh network node which transits the data via LoRa. I assumed that if available the SQL database on the handheld device would have no reason to store historically irrelevant content. Think “walkie-textie”. </p>
+<p> My theory going into this process was that content-based artifacts would be extremely limited on Full Filesystem extractions and virtually nonexistent on Logical extractions. Your cellphone communicates via Bluetooth with the mesh network node which transmits the data via LoRa. I assumed that if available the SQL database on the handheld device would have no reason to store historically irrelevant content. Think “walkie-textie”. </p>
 
 <p> I utilized an Apple iPhone 14 Pro, an Apple iPhone XR, and a Samsung SM-S134DL. I chose these devices better to understand the application's workings across Android and iOS. I performed the testing over a week while traveling for training so the location data would be easily visible during analysis.</p>
 
