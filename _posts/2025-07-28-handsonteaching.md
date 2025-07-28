@@ -4,7 +4,7 @@ title:  "Teaching Security"
 subtitle: "Hands-On WiFi, RFID, and NFC"
 date:   2025-07-28 12:01:43 -0400
 categories: certs
-background: '/img/posts/handshake.jpg'
+background: '/img/posts/handshake1.jpg'
 ---
 
 <p>Last week I had the opportunity to run a workshop for local law enforcement on wireless security fundamentals. Instead of death-by-PowerPoint, we went hands-on with some affordable hardware that demonstrates real attack vectors they'll encounter in the field.</p>
