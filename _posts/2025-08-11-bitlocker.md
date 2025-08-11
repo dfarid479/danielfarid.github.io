@@ -2,7 +2,7 @@
 layout: post
 title:  "Cracking BitLocker"
 subtitle: "When the Front Door is Locked but the Windows are Open"
-date:   2025-08-11 15:01:43 -0400
+date:   2025-08-10 15:01:43 -0400
 categories: certs
 background: '/img/posts/CrackingBitLocker.png'
 ---
