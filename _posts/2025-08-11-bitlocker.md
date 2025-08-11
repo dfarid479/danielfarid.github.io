@@ -24,6 +24,10 @@ Popped the drive back in and fired up the machine. One user account: "Walt".</p>
 </ul>
 <p>This is actually good forensic intelligence - it might indicate there were other user accounts on this system that could be worth investigating, even if they're no longer visible in the current user interface.</p>
 
+<h2 class="section-heading">Who's SAM?</h2>
+
+<p>The SAM (Security Account Manager) registry file is essentially Windows' address book for user accounts and passwords, stored at %SystemRoot%\System32\config\SAM on most systems. This file contains all the important stuff about local users - their usernames, password hashes, group memberships, when they last logged in, and what permissions they have. For digital forensics investigators, the SAM file is like striking gold because it tells the story of who had access to a system and when they used it. Investigators can pull password hashes from it to try cracking them offline, spot suspicious or unauthorized accounts that shouldn't be there, and piece together timelines of user activity. The tricky part is that Windows keeps this file locked down tight while the system is running, so forensic analysts typically need to work with memory dumps, shadow copies, or examine the drive offline to get at it. Whether you're investigating a data breach, tracking down malware, or working a criminal case involving computers, understanding how to extract and analyze the SAM file is a fundamental skill that can make or break your investigation - or in this example Bitlocker.</p>
+
 <h2 class="section-heading">Getting In</h2>
 
 <p>I restarted the machine, logged in as "Walt" with my new password. First stop: disable BitLocker encryption. Once that was done, powered down and reconnected to the Tableau bridge for proper imaging. This approach succeeded because BitLocker's protection relies on the integrity of the local user authentication. By modifying the SAM file offline, we bypass the encryption layer's dependence on user credentials. This technique is effective on local accounts but would not work on domain-joined systems with centralized key management.</p>
