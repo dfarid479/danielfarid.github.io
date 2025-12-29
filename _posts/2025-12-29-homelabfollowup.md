@@ -2,7 +2,7 @@
 layout: post
 title: "Homelab Chronicles"
 subtitle: "Updates, Failures, and Getting My SIEM On"
-date: 2025-12-29 15:27:43 -0400
+date: 2025-12-29 12:27:43 -0400
 categories: homelab
 background: '/img/posts/homelab2.jpg'
 ---
