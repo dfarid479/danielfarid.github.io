@@ -157,20 +157,4 @@ echo "=============================================="
 
 <p>What's interesting is the sheer volume. These aren't script kiddies manually probing networks. This is automated infrastructure—likely AI-assisted in target selection and vulnerability identification. The economics are simple: spin up disposable VPS instances for $5-10/month, run automated scans against residential IP ranges, flag anything that responds, sell access or exploit directly, burn the IP when it gets blacklisted, repeat.</p>
 
-<p>The barrier to entry has never been lower. Tools like Shodan and Censys have legitimate uses, but they've also created a roadmap for attackers. Everyone knows where the NAS devices are.</p>
-
-<h2 class="section-heading">Takeaways</h2>
-
-<p><strong>Don't panic.</strong> Blocked attempts are informational—your defenses worked.</p>
-
-<p><strong>Verify your exposure.</strong> Run a port scan against your public IP. If everything's closed, you're fine.</p>
-
-<p><strong>Check for UPnP.</strong> Disable it on your router. Applications love to open ports without asking.</p>
-
-<p><strong>Use Tailscale or similar.</strong> Keep your services off the public internet entirely.</p>
-
-<p><strong>Restrict SMB/NFS.</strong> If you must have file shares, bind them to Tailscale IPs only.</p>
-
-<p><strong>Enable auth everywhere.</strong> Even internal services should require authentication.</p>
-
-<p>The scanners will keep coming. That's just the internet now. The goal isn't to make them stop—it's to make sure they find nothing when they arrive.</p>
+<p>The barrier to entry has never been lower. Tools like Shodan and Censys have legitimate uses, but they've also created a roadmap for attackers. Everyone knows where the NAS devices are. The scanners will keep coming. That's just the internet now. The goal isn't to make them stop—it's to make sure they find nothing when they arrive.</p>
