@@ -4,10 +4,10 @@ title: "Replacing iCloud Sync for Obsidian with a Self-Hosted CouchDB"
 subtitle: "How I Got My Notes Off Apple's Servers and Onto My Own Homelab"
 date: 2026-03-28 10:00:00 -0400
 categories: homelab productivity
-background: '/img/posts/homelab.jpg'
+background: '/img/posts/syncthing.png'
 ---
 
-<p>I've been using Obsidian for about a year now. It's the tool that finally clicked for me—local Markdown files, no proprietary format, a linking model that actually maps to how I think. The plugin ecosystem is deep enough to do serious work without feeling like you're assembling a Rube Goldberg machine.</p>
+<p>I've been using Obsidian since the homelab idea started. It's the tool that finally clicked for me—local Markdown files, no proprietary format, a linking model that actually maps to how I think. The plugin ecosystem is deep enough to do serious work without feeling like you're assembling a Rube Goldberg machine.</p>
 
 <p>But sync was always the weak point.</p>
 
