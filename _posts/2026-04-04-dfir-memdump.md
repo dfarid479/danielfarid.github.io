@@ -29,9 +29,9 @@ background: '/img/posts/ram.png'
 
 <p>dfir-memdump is a Python tool that sits on top of Volatility3 and adds an intelligence layer between the raw plugin output and the investigator. The architecture is straightforward: run a fixed set of Volatility3 plugins against the image, pass all the output through a set of analysis modules, and render the results into a report that a human can actually read.</p>
 
-<p>The plugin stack covers the core artifacts: process list and tree, network connections, suspicious VAD regions via malfind, command lines, loaded DLLs, open handles, and token privileges. Seven plugins, all run automatically, all output parsed into typed models so the analysis layer has clean structured data to work with.</p>
+<p>The plugin stack covers the core artifacts: process list and tree, network connections, suspicious VAD regions via malfind, command lines, loaded DLLs, open handles, token privileges, and BitLocker keys. Eight plugins, all run automatically, all output parsed into typed models so the analysis layer has clean structured data to work with.</p>
 
-<p>On top of that sits nine intelligence modules. The ones that tend to produce the most immediately actionable output in practice:</p>
+<p>On top of that sits ten intelligence modules. The ones that tend to produce the most immediately actionable output in practice:</p>
 
 <p><strong>Anomaly Detector</strong> — checks every process for parent-child relationships that don't make sense (Word spawning PowerShell, explorer.exe spawning net.exe), name masquerading (svchost.exe running from the wrong path), and hollow process indicators. These are the behavioral anomalies that show up before any hash or signature matching is possible.</p>
 
@@ -42,6 +42,8 @@ background: '/img/posts/ram.png'
 <p><strong>Privilege Checker</strong> — inspired by PrivHound, this module looks at the token privileges held by each non-system process. SeDebugPrivilege on a process that isn't a debugger is a significant red flag. SeImpersonatePrivilege in the wrong place is a Potato attack waiting to happen. When both are present on the same process, the finding escalates to CRITICAL — that combination is generally sufficient for full domain compromise from a low-privilege starting point.</p>
 
 <p><strong>VirusTotal Client</strong> — submits SHA256 hashes of process images to the VirusTotal API and surfaces any detections. Rate-limited, cached locally in SQLite so you're not burning API quota on hashes you've already checked, and skippable entirely with a flag for offline or air-gapped work.</p>
+
+<p><strong>Encryption Key Finder</strong> — this one is specific to the work. If a BitLocker-encrypted drive is present, the FVEK is often sitting in memory while the system is running. Volatility3's windows.bitlocker.Bitlocker plugin can pull it out directly. The module also runs aeskeyfind and bulk_extractor as subprocess tools if they're installed, scanning the raw image for AES key schedules by detecting the statistical properties of expanded key material. For VeraCrypt and TrueCrypt, it checks whether the mounting process was running at collection time — if it was, the master key is typically in its VAD and recoverable with the same tooling. Recovered keys land in a dedicated section of the report with the dislocker and bdemount commands pre-populated. Chain-of-custody note: key recovery is performed against the forensic copy of the memory image and documented in the report.</p>
 
 <h2 class="section-heading">Running It</h2>
 
@@ -55,7 +57,7 @@ background: '/img/posts/ram.png'
 
 <pre><code>dfir-memdump analyze /evidence/RAM.raw --no-vt --format html</code></pre>
 
-<p>The HTML report is the most useful artifact for casework. It's fully self-contained — one file, no internet required to view it — and covers everything in a readable format: the image hash for chain of custody, the executive summary, a process risk leaderboard sorted by weighted finding score, the process tree with suspicious processes flagged, a chronological event timeline, the attack chain reconstruction ordered by kill-chain stage, and a full findings section with evidence blocks and click-to-copy IOC chips. There's a Print / Save PDF button in the header for generating a clean printable version.</p>
+<p>The HTML report is the most useful artifact for casework. It's fully self-contained — one file, no internet required to view it — and covers everything in a readable format: the image hash for chain of custody, the executive summary, a process risk leaderboard sorted by weighted finding score, the process tree with suspicious processes flagged, a chronological event timeline, the attack chain reconstruction ordered by kill-chain stage, a dedicated encryption key section with mount commands, and an intelligence findings section grouped by severity level so you see the critical items immediately without scrolling through everything. IOCs are summarized by type — N IPs, N hashes, N mutexes — with the full list expandable when you need it. There's a Print / Save PDF button in the header for generating a clean printable version.</p>
 
 <h2 class="section-heading">The Attack Chain</h2>
 
