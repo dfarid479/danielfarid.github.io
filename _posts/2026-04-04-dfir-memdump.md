@@ -2,7 +2,7 @@
 layout: post
 title: "dfir-memdump"
 subtitle: "Turning RAM Captures Into Actionable Intelligence, Locally"
-date: 2026-04-04 09:00:00 -0400
+date: 2026-04-04 12:26:00 -0400
 categories: dfir forensics tools
 background: '/img/posts/ram.png'
 ---
@@ -11,7 +11,11 @@ background: '/img/posts/ram.png'
 
 <p>The honest answer most of the time: it gets imaged, hashed, bagged, logged, and then sits on a drive while the investigation moves forward on artifacts that are faster to process. Disk forensics has a mature toolchain. Network forensics has a mature toolchain. Memory forensics has Volatility, which is powerful and deeply capable, but the path from "here's a raw image" to "here's what's actually happening in this machine" has a lot of manual steps and a high floor for entry. The result is that RAM — which is often the most volatile and time-sensitive evidence on the whole scene — ends up being the least utilized data point in the investigation.</p>
 
-<p>I wanted to fix that for my own casework. The goal was simple: hand the tool a raw image, walk away for a few minutes, and come back to a prioritized summary of what's worth looking at. No manual plugin chaining, no parsing JSON by hand, no rebuilding the same analysis workflow every time. Just signal.</p>
+<p>The motivation for building this came from two directions. The first is the cyber response side. I wanted something that could run locally on an endpoint during an active incident — no sending images off-site, no waiting on a lab queue — and that could also give a fast first read when someone comes in reporting a compromise. The triage report needs to be good enough to tell you whether you're looking at a real incident and what the attacker was doing, in the time it takes to have the first conversation with the affected party.</p>
+
+<p>The second is criminal forensics, specifically cases involving the possession of unlawful files. That work has a growing encryption problem. Whether it's because the barrier to using full-disk encryption has dropped, because suspects are becoming more aware of forensic methods, or simply because encryption is more prevalent across all consumer devices — the result is the same: more devices that are live and mounted at collection time, and more cases where the question isn't whether contraband exists but whether we can access it. Memory capture is one of the few collection techniques that addresses that directly. The key material is in RAM while the system is running. If you don't get it there, you don't get it.</p>
+
+<p>Those two use cases shaped the tool in different ways, but the core requirement was the same: hand it a raw image, walk away for a few minutes, and come back to a prioritized summary of what's worth looking at. No manual plugin chaining, no parsing JSON by hand, no rebuilding the same analysis workflow every case. Just signal.</p>
 
 <h2 class="section-heading">What's Actually in Memory</h2>
 
@@ -23,7 +27,7 @@ background: '/img/posts/ram.png'
 
 <p>Decrypted content. Full-disk encryption protects data at rest. A running system has already decrypted everything it needs to operate. Credentials in LSASS, encryption keys in process memory, plaintext values that are ciphertext on disk — all of it is accessible in a live capture in a way it simply isn't from a disk image alone.</p>
 
-<p>The limitation has never been what's in memory. The limitation has been the time cost of extracting meaning from it.</p>
+<p>The limitation has never been what's in memory. The limitation has been the time cost of getting real meaning from it.</p>
 
 <h2 class="section-heading">Building the Tool</h2>
 
@@ -43,7 +47,7 @@ background: '/img/posts/ram.png'
 
 <p><strong>VirusTotal Client</strong> — submits SHA256 hashes of process images to the VirusTotal API and surfaces any detections. Rate-limited, cached locally in SQLite so you're not burning API quota on hashes you've already checked, and skippable entirely with a flag for offline or air-gapped work.</p>
 
-<p><strong>Encryption Key Finder</strong> — this one is specific to the work. If a BitLocker-encrypted drive is present, the FVEK is often sitting in memory while the system is running. Volatility3's windows.bitlocker.Bitlocker plugin can pull it out directly. The module also runs aeskeyfind and bulk_extractor as subprocess tools if they're installed, scanning the raw image for AES key schedules by detecting the statistical properties of expanded key material. For VeraCrypt and TrueCrypt, it checks whether the mounting process was running at collection time — if it was, the master key is typically in its VAD and recoverable with the same tooling. Recovered keys land in a dedicated section of the report with the dislocker and bdemount commands pre-populated. Chain-of-custody note: key recovery is performed against the forensic copy of the memory image and documented in the report.</p>
+<p><strong>Encryption Key Finder</strong> — this one is driven directly by the criminal forensics side of the work. Encrypted devices are appearing more often, and a live memory capture at the time of seizure is often the only opportunity to recover key material. If a BitLocker-encrypted drive is present and the system is running, the Full Volume Encryption Key is often sitting in memory. Volatility3's windows.bitlocker.Bitlocker plugin can pull it out directly. The module also runs aeskeyfind and bulk_extractor as subprocess tools if they're installed, scanning the raw image for AES key schedules by detecting the statistical properties of expanded key material — this covers BitLocker, VeraCrypt, TrueCrypt, and any other AES-based cipher. For VeraCrypt and TrueCrypt specifically, it checks whether the mounting process was running at collection time; if it was, the master key is typically in its VAD and recoverable with the same tooling. Recovered keys land in a dedicated section of the report with the dislocker and bdemount commands pre-populated. If the plugin runs and finds nothing — because the drive wasn't encrypted, or because the system had already been shut down and restarted — the report says so explicitly rather than leaving a blank section. Chain-of-custody note: key recovery is performed against the forensic copy of the memory image and documented in the report.</p>
 
 <h2 class="section-heading">Running It</h2>
 
@@ -70,6 +74,8 @@ background: '/img/posts/ram.png'
 <h2 class="section-heading">Where It Fits</h2>
 
 <p>This isn't a replacement for a full Volatility workflow. There are things the tool doesn't do — no registry hive extraction, no shimcache parsing, no deep artifact carving — and for complex cases those manual deep-dives are still necessary. The purpose is different: get through the first pass quickly, surface what's worth looking at, and let the investigator make informed decisions about where to spend time.</p>
+
+<p>On the cyber response side, that means having an answer ready before the initial triage conversation is over — yes this is a real incident, here's what was running, here's where it was calling out to. On the criminal forensics side, it means leaving every scene knowing whether the memory image contains key material that will matter later, rather than finding out months down the line when the image has been sitting on a shelf.</p>
 
 <p>The memory image has always been worth collecting. The gap has been in making it worth reading before the investigation has moved on. That's what this is trying to close.</p>
 
