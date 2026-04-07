@@ -65,6 +65,16 @@ background: '/img/posts/backblaze.png'
 
 <p>Ongoing maintenance: essentially none. The task runs on schedule. TrueNAS logs the results. Uptime Kuma monitors the TrueNAS box. If a sync fails, I'll find out. Other than periodically checking that the job is still completing and the bucket is growing as expected, there's nothing to manage.</p>
 
+<h2 class="section-heading">One Issue I Hit Post-Setup</h2>
+
+<p>After the initial sync completed successfully, the nightly job started failing every night with the same error: <code>Checksum did not match data received (400 bad_request)</code>. The sync would run for
+two-plus hours, transfer everything, and then fail at the very end—meaning nothing was flagged as complete and rclone wouldn't clean up the remote. Digging into the job logs with <code>midclt call
+core.get_jobs</code> revealed it was always the same file: <code>graylog/mongodb/journal/WiredTigerLog.0000000100</code>. This is a WiredTiger journal file—MongoDB's crash recovery log—and Graylog is actively
+writing to it throughout the backup window, so the file changes between when rclone starts reading it and when the upload finishes, causing the checksum to not match what actually arrived at B2. The fix was
+straightforward: exclude the MongoDB journal directory from the sync task, since WiredTiger journals are ephemeral by design and regenerate automatically on startup—the actual database collections are what
+matter for a restore, not the journal. If you're running any databases or other apps that write continuously during your backup window, either exclude those transient files explicitly or consider stopping the
+containers with a pre-script before the sync runs.</p>
+
 <h2 class="section-heading">Recommended</h2>
 
 <p>If you're running TrueNAS and haven't set up off-site backup, this is the path of least resistance. The TrueNAS cloud sync integration is genuinely well done—rclone handles the heavy lifting, the UI abstracts the complexity, and the credential verification step catches config errors before you schedule a task and walk away. Backblaze B2 is cheap enough that cost isn't a real consideration at homelab scale. And client-side encryption means you can put sensitive data in the backup without thinking twice about who else might have access to it.</p>
