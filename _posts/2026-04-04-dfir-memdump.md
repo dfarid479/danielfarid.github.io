@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "dfir-memdump"
+title: "Digital Forensics and Incident Response - memdump Tool"
 subtitle: "Turning RAM Captures Into Actionable Intelligence, Locally"
 date: 2026-04-04 12:26:00 -0400
 categories: dfir forensics tools
