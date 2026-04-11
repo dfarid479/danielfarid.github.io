@@ -2,7 +2,7 @@
 layout: post
 title: "host-sentry: A Local Security Monitor for the Machine Running Claude Code"
 subtitle: "When your laptop is the canary in the coal mine, you should probably be watching it"
-date: 2026-04-11 10:00:00 -0400
+date: 2026-04-11 08:56:00 -0400
 categories: security tools homelab claude
 background: '/img/posts/claudesecurity.png'
 ---
