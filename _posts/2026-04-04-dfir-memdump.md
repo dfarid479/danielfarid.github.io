@@ -28,13 +28,13 @@ background: '/img/posts/ram.png'
 
 <p>Decrypted content. Full-disk encryption protects data at rest. A running system has already decrypted everything it needs to operate. Credentials in LSASS, encryption keys in process memory, plaintext values that are ciphertext on disk — all of it is accessible in a live capture in a way it simply isn't from a disk image alone.</p>
 
-<p>The limitation has never been what's in memory. The limitation has been the time cost of getting real meaning from it.</p>
+<p>The limitation has never been what's there; the limiting factor has been the time cost of getting real meaning from it.</p>
 
 <h2 class="section-heading">Building the Tool</h2>
 
-<p>dfir-memdump is a Python tool that sits on top of Volatility3 and adds an intelligence layer between the raw plugin output and the investigator. The architecture is straightforward: run a fixed set of Volatility3 plugins against the image, pass all the output through a set of analysis modules, and render the results into a report that a human can actually read.</p>
+<p>dfir-memdump is a Python tool that sits on top of Volatility3 and adds an intelligence layer between the raw plugin output and the investigator. The architecture is straightforward: run a fixed set of Volatility3 plugins against the image, pass all the output through a set of analysis modules, and render the results into a report that a human can actually read. Volatility has been the tool of choice for investigators for years, and been apart of all my Windows memory forensics training. </p>
 
-<p>The plugin stack covers the core artifacts: process list and tree, network connections, suspicious VAD regions via malfind, command lines, loaded DLLs, open handles, token privileges, and BitLocker keys. Eight plugins, all run automatically, all output parsed into typed models so the analysis layer has clean structured data to work with.</p>
+<p>The plugin stack covers the core artifacts: process list and tree, network connections, suspicious VAD regions via malfind, command lines, loaded DLLs, open handles, token privileges, and encryption key detection (BitLocker FVEKs, aeskeyfind, & TrueCrypt/Veracrypt process detection). Eight plugins, all run automatically, all output parsed into typed models so the analysis layer has clean structured data to work with.</p>
 
 <p>On top of that sits ten intelligence modules. The ones that tend to produce the most immediately actionable output in practice:</p>
 
@@ -78,6 +78,6 @@ background: '/img/posts/ram.png'
 
 <p>On the cyber response side, that means having an answer ready before the initial triage conversation is over — yes this is a real incident, here's what was running, here's where it was calling out to. On the criminal forensics side, it means leaving every scene knowing whether the memory image contains key material that will matter later, rather than finding out months down the line when the image has been sitting on a shelf.</p>
 
-<p>The memory image has always been worth collecting. The gap has been in making it worth reading before the investigation has moved on. That's what this is trying to close.</p>
+<p>The memory image has always been worth collecting. The gap has been in making it worth reading before the investigation has moved on. That's what this is trying to close. Again this is a tool to assist in speeding up workflows and drawing your attention quickly to things that matter. Never trust a tools output without verification.</p>
 
-<p>The code is open source at <a href="https://github.com/dfarid479/dfir-memdump">github.com/dfarid479/dfir-memdump</a>.</p>
+<p>Hope it helps. The code is open source at <a href="https://github.com/dfarid479/dfir-memdump">github.com/dfarid479/dfir-memdump</a>.</p>
