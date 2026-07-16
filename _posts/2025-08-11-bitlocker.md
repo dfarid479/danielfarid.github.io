@@ -6,6 +6,7 @@ date:   2025-08-10 15:01:43 -0400
 categories: certs
 background: '/img/posts/CrackingBitLocker.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>Recently encountered a BitLocker-encrypted Windows 11 Home 23H2 laptop during a digital forensics examination. Here's the methodology I used to gain access and decrypt the system for imaging.</p>
 

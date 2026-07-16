@@ -5,6 +5,7 @@ date: 2026-05-30 15:30:00 -0500
 categories: forensics tools sqlite dfir
 background: '/img/posts/sqlite.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>One of the things I genuinely enjoy about working in digital forensics is that the stuff you study and the stuff you actually need at work tend to collide in useful ways. This week was a good example of that.</p>
 

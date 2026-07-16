@@ -6,6 +6,7 @@ date:   2025-08-15 08:05:43 -0400
 categories: certs
 background: '/img/posts/Secplus2.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>So remember when I wrapped up my Network+ journey and said Security+ was next? Well, I wasn't messing around. About a month later, I'm sitting here with a fresh Security+ certification and some thoughts on how this one compared to its networking predecessor. Spoiler alert: it was harder than I expected, but I somehow scored better. Go figure.</p>
 

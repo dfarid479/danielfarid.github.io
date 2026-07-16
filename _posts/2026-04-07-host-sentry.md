@@ -6,8 +6,9 @@ date: 2026-04-11 08:56:00 -0400
 categories: security tools homelab claude
 background: '/img/posts/claudesecurity.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
-<p>I use Claude Code for a lot of things — building bots, forensics tooling, homelab automation, troubleshooting things that would take me three times as long to solve on my own. It's become a genuine force multiplier for the kind of solo technical work I do, and I've leaned into that. But I've never been fully comfortable with it, and I think that discomfort is worth being honest about.</p>
+<p>I use Claude Code for a lot of things — building bots, editing this post,  forensics tooling, homelab automation, troubleshooting things that would take me three times as long to solve on my own. It's become a genuine force multiplier for the kind of solo technical work I do, and I've leaned into that. But I've never been fully comfortable with it, and I think that discomfort is worth being honest about.</p>
 
 <p>The issue isn't that Claude is adversarial. It isn't. The issue is that the surface area of risk is large and most of it is invisible during normal use. Every file Claude reads, every bash command it runs, every MCP tool it calls is a potential vector. If a project directory contains a malicious string crafted to look like an instruction, Claude might follow it. If a dependency in one of my Node-based MCP servers was compromised, Claude would happily execute it every time I opened that project. If my conversation history — which contains over 300KB of every prompt, code snippet, and environment variable I've ever pasted into a session — ended up readable by the wrong process, that's a significant credential exposure. None of this is theoretical. These are real attack surfaces that exist on any machine running an AI coding assistant with broad file system and shell access.</p>
 

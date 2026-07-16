@@ -6,6 +6,7 @@ date: 2026-01-25 09:00:00 -0400
 categories: homelab security
 background: '/img/posts/xfinity.jpg'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>So there I was, Saturday morning, coffee in hand, when my phone buzzes with an Xfinity Advanced Security alert. The message was ominous: "Attempt from IP 194.180.49.117 was blocked on Generic Brand Linux. This happens when a known source of hacking tries to attack a device on your home network."</p>
 

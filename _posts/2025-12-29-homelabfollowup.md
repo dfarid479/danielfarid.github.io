@@ -6,6 +6,7 @@ date: 2025-12-29 12:27:43 -0400
 categories: homelab
 background: '/img/posts/homelab2.jpg'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>So I built a homelab three months ago—a proper production-grade personal cloud infrastructure running 17+ services. Since then, I've learned that "production-ready" doesn't mean "maintenance-free." I figured a little update could be helpful.</p>
 

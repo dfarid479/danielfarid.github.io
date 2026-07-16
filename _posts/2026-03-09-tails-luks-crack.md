@@ -6,6 +6,7 @@ date: 2026-03-09 09:00:00 -0400
 categories: dfir forensics
 background: '/img/posts/tails.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>Seized a SanDisk USB during an investigation. Subject declined to provide the encryption password. Standard situation — so we work the problem from the other end. This post covers how I identified the persistent storage partition, imaged the device, and conducted an exhaustive password attack against the LUKS2 encryption. Spoiler: the encryption won. Here's why that's actually the expected outcome, and why the methodology used was the right call regardless.</p>
 

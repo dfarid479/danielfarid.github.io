@@ -6,6 +6,7 @@ date: 2026-01-30 10:00:00 -0400
 categories: security ai
 background: '/img/posts/moltbot.jpg'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>You've probably seen it by now. Moltbot (formerly Clawdbot) has been everywhere—60,000+ GitHub stars, viral Twitter threads, breathless Medium posts about "your personal AI assistant that actually does things." The hype machine was running at full throttle.</p>
 

@@ -6,6 +6,7 @@ date: 2026-04-04 10:00:00 -0400
 categories: homelab
 background: '/img/posts/backblaze.png'
 ---
+<p>{% include ai-disclaimer.html %}</p>
 
 <p>My homelab gap analysis from a few months back flagged a few things as critical. No resource limits on containers was one. No off-site backups was another. The exact note I wrote was: "all backups on same machine—fire or theft means total loss." That's not a backup strategy. That's just having two copies of the same thing in the same building.</p>
 
